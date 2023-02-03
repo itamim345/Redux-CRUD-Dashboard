@@ -16,11 +16,3 @@ export interface IUserState {
     list: IUser[],
     listStatus: ApiStatus
 }
-
-//demo list
-export const defaultlist : IUser[] = [{
-    firstName: "john",
-    lastName: "Morish",
-    phoneNumber: "978777",
-    age: 34
-},]
