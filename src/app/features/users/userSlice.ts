@@ -1,6 +1,7 @@
+import { updateUser } from './../../service/userService';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { createUser, getUserList } from '../../service/userService';
-import { ApiStatus, IUserForm, IUserState } from './userType';
+import { createUser, deleteUser, getUserList } from '../../service/userService';
+import { ApiStatus, IUpdateUserActionProps, IUserForm, IUserState } from './userType';
 
 const initialState: IUserState = {
     list: [],
@@ -24,6 +25,24 @@ export const createUserAction = createAsyncThunk(
         return response.data
     }
 )
+
+export const deleteUserAction = createAsyncThunk(
+    "user/deleteUserAction",
+    async (id : string) => {
+    await deleteUser(id);
+        return id;
+    }
+)
+
+export const updateUserAction = createAsyncThunk(
+    "user/updateUserAction",
+    async({id, data} : IUpdateUserActionProps) => {
+       const response =  await updateUser(id, data)
+       return response.data;
+    }
+)
+
+
 
 const userSlice = createSlice({
     name: "user",
@@ -52,6 +71,12 @@ const userSlice = createSlice({
         });
         builder.addCase(createUserAction.rejected, (state) => {
             state.listStatus = ApiStatus.error
+        })
+
+
+        builder.addCase(deleteUserAction.fulfilled, (state, action) => {
+            const newList = state.list.filter((x) => x._id !== action.payload);
+            state.list = newList;
         })
     }
 })

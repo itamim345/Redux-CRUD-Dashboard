@@ -13,7 +13,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<UserList />} />
-          <Route path="/create-user" element={<UserForm/>} />
+          <Route path="/create-user" element={<UserForm />} />
+          <Route path="user/:id" element={<UserForm isUpdateForm={true} />} />
         </Routes>
       </BrowserRouter>
     </div>

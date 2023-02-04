@@ -9,3 +9,14 @@ export const getUserList = async () => {
 export const createUser = async (data: IUserForm) => {
   return await httpService.post<IUser>(ApiConfig.create, data );
 }; 
+
+
+export const deleteUser = async (id: string) => {
+  const url = `${ApiConfig.delete}/${id}`
+  return await httpService.delete(url)
+}; 
+
+export const updateUser = async (id: string, data: IUserForm) => {
+  const url = `${ApiConfig.delete}/${id}`
+  return await httpService.patch(url, data) 
+}
