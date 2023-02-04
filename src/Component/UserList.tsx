@@ -44,9 +44,9 @@ export default function UserList() {
             listStatus === ApiStatus.error && <tbody>Error in Users Loading...</tbody>
           }
 
-          { listStatus === ApiStatus.ideal && list.map( user => {
+          { listStatus === ApiStatus.ideal && list.map( (user, index) => {
             return (
-              <tr className="border-b border-gray-300">
+              <tr className="border-b border-gray-300" key={index}>
                 <td>
                   {user.firstName} {user.lastName}
                 </td>

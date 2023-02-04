@@ -1,9 +1,10 @@
+import { createUserAction } from './userSlice';
 //Types
 export interface IUser {
     firstName: string,
     lastName: string,
     phoneNumber: string,
-    age: number
+    age: string
 }
 export enum ApiStatus {
     "loading",
@@ -15,4 +16,12 @@ export enum ApiStatus {
 export interface IUserState {
     list: IUser[],
     listStatus: ApiStatus
+    createUserFormStatus: ApiStatus
+}
+
+export interface IUserForm {
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    age: string;
 }
